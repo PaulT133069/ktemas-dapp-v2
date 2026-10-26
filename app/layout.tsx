@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Providers } from "./providers";
 
 const poppins = localFont({
   src: [
@@ -37,7 +38,9 @@ export default function RootLayout({
   return (
     <html lang="fr" className={poppins.variable}>
       <body className="antialiased">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

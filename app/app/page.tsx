@@ -1,4 +1,7 @@
+'use client'
+
 import Navbar from "@/components/Navbar";
+import { ConnectWallet } from "@/components/ConnectWallet";
 
 export default function AppPage() {
   return (
@@ -10,17 +13,13 @@ export default function AppPage() {
           Mon Dashboard
         </h1>
 
-        {/* Zone de connexion (Emplacement réservé) */}
+        {/* Zone de connexion avec le bouton Connect Wallet */}
         <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h2 className="text-xl font-semibold mb-2">Connectez votre wallet</h2>
             <p className="text-zinc-500 text-sm">Pour voir vos soldes et interagir avec le Vault.</p>
           </div>
-          
-          {/* 🔮 EMPLACEMENT DU BOUTON CONNECT WALLET */}
-          <div className="bg-zinc-100 text-zinc-400 px-6 py-2 rounded-full text-sm font-medium border border-dashed border-zinc-300">
-            Connect Wallet (bientôt)
-          </div>
+          <ConnectWallet />
         </div>
 
         {/* Zone Vault (placeholder) */}

@@ -41,13 +41,8 @@ export default function Navbar() {
         <Link href="/documentation" className="hover:text-[#0f1c32] transition-colors">Documentation</Link>
       </div>
 
-      {/* Zone d'action */}
-      <div className="flex items-center gap-4">
-        {/* 
-          🔮 EMPLACEMENT RÉSERVÉ POUR LE BOUTON CONNECT WALLET 
-          On le rajoutera ici plus tard, sans toucher au reste.
-        */}
-        
+      {/* Bouton d'action unique */}
+      <div>
         <Link href="/app">
           <button className="bg-[#0f1c32] hover:bg-[#1a2d4a] text-white font-medium px-6 py-2 rounded-full transition-colors">
             Lancer l'App
