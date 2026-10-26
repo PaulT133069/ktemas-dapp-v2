@@ -24,7 +24,7 @@ export default function AppPage() {
 
         {/* Zone Vault (placeholder) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-lg font-semibold mb-4">Déposer</h3>
             <p className="text-zinc-500 text-sm mb-4">Déposez vos KTMS pour gagner des récompenses.</p>
             <div className="h-32 bg-zinc-50 rounded-xl border border-dashed border-zinc-300 flex items-center justify-center text-zinc-400">
@@ -32,7 +32,7 @@ export default function AppPage() {
             </div>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-lg font-semibold mb-4">Retirer</h3>
             <p className="text-zinc-500 text-sm mb-4">Retirez vos KTMS (délai de 48h).</p>
             <div className="h-32 bg-zinc-50 rounded-xl border border-dashed border-zinc-300 flex items-center justify-center text-zinc-400">

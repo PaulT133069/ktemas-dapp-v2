@@ -18,17 +18,17 @@ export default function TresoreriePage() {
 
         {/* Cartes de stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-sm font-medium text-zinc-500 mb-2">Solde Total</h3>
             <p className="text-3xl font-bold">0 KTMS</p>
             <p className="text-sm text-zinc-400 mt-1">En attente de dépôts</p>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-sm font-medium text-zinc-500 mb-2">Frais Perçus</h3>
             <p className="text-3xl font-bold">0 KTMS</p>
             <p className="text-sm text-zinc-400 mt-1">Depuis le lancement</p>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-sm font-medium text-zinc-500 mb-2">Retraits Effectués</h3>
             <p className="text-3xl font-bold">0</p>
             <p className="text-sm text-zinc-400 mt-1">Avec timelock de 48h</p>

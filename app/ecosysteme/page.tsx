@@ -18,7 +18,7 @@ export default function EcosystemePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Token */}
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🪙</div>
             <h2 className="text-2xl font-bold mb-3">Le Token (KTMS)</h2>
             <p className="text-zinc-600 mb-4">
@@ -30,7 +30,7 @@ export default function EcosystemePage() {
           </div>
 
           {/* Vault */}
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🏦</div>
             <h2 className="text-2xl font-bold mb-3">Le Vault</h2>
             <p className="text-zinc-600 mb-4">
@@ -42,7 +42,7 @@ export default function EcosystemePage() {
           </div>
 
           {/* Gouvernance */}
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🗳️</div>
             <h2 className="text-2xl font-bold mb-3">La Gouvernance</h2>
             <p className="text-zinc-600 mb-4">
@@ -54,7 +54,7 @@ export default function EcosystemePage() {
           </div>
 
           {/* Trésorerie */}
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">💼</div>
             <h2 className="text-2xl font-bold mb-3">La Trésorerie</h2>
             <p className="text-zinc-600 mb-4">

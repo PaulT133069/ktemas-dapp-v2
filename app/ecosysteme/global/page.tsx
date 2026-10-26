@@ -18,7 +18,7 @@ export default function EcosystemeGlobalPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Ktemas */}
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🏦</div>
             <h2 className="text-2xl font-bold mb-3">Ktemas (KTMS)</h2>
             <p className="text-zinc-600 mb-4">
@@ -30,7 +30,7 @@ export default function EcosystemeGlobalPage() {
           </div>
 
           {/* Kuusi */}
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow opacity-75">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🌲</div>
             <h2 className="text-2xl font-bold mb-3">Kuusi</h2>
             <p className="text-zinc-600 mb-4">
@@ -42,7 +42,7 @@ export default function EcosystemeGlobalPage() {
           </div>
 
           {/* Netense */}
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow opacity-75">
+          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🌐</div>
             <h2 className="text-2xl font-bold mb-3">Netense</h2>
             <p className="text-zinc-600 mb-4">
