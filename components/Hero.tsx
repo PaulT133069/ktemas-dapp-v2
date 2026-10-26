@@ -23,12 +23,12 @@ export default function Hero() {
       {/* Boutons - apparaissent en dernier */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto animate-fade-in-up delay-300">
         <Link href="/app">
-          <button className="bg-[#0f1c32] hover:bg-[#1a2d4a] text-white font-medium px-8 py-4 rounded-full text-lg w-full sm:w-auto transition-all active:scale-95">
+          <button className="bg-[#0f1c32] hover:bg-[#1a2d4a] text-white font-medium px-8 py-4 rounded-full text-lg w-full sm:w-auto transition-all active:scale-95 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             Ouvrir mon Vault
           </button>
         </Link>
         <Link href="/documentation">
-          <button className="border border-zinc-200 text-[#0f1c32] hover:border-[#0f1c32] font-medium px-8 py-4 rounded-full text-lg w-full sm:w-auto transition-all active:scale-95">
+          <button className="border border-zinc-200 text-[#0f1c32] hover:border-[#0f1c32] font-medium px-8 py-4 rounded-full text-lg w-full sm:w-auto transition-all active:scale-95 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             Lire le whitepaper
           </button>
         </Link>

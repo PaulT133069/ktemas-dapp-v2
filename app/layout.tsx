@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./providers";
+import Footer from "@/components/Footer";
 
 const poppins = localFont({
   src: [
@@ -39,7 +40,10 @@ export default function RootLayout({
     <html lang="fr" className={poppins.variable}>
       <body className="antialiased">
         <Providers>
-          {children}
+            <div className="flex-grow">
+              {children}
+            </div>
+            <Footer />
         </Providers>
       </body>
     </html>
