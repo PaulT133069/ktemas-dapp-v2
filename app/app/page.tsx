@@ -1,15 +1,33 @@
 'use client'
 
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { ConnectWallet } from "@/components/ConnectWallet";
 import { useKtemasBalance } from "@/lib/useKtemasBalance";
 import { useKtemasVault } from "@/lib/UseKtemasVault";
+import { DepositForm } from "@/components/DepositForm";
 import { useAccount } from "wagmi";
 
 export default function AppPage() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true) }, []);
+
   const { isConnected } = useAccount();
   const { balance, isLoading: isLoadingBalance } = useKtemasBalance();
   const { deposit, isLoading: isLoadingVault } = useKtemasVault();
+
+  // ✅ Si pas monté, on affiche un placeholder pour toute la page
+  if (!mounted) {
+    return (
+      <main className="min-h-screen bg-zinc-50">
+        <Navbar />
+        <div className="pt-32 px-6 max-w-6xl mx-auto">
+          <div className="h-8 w-48 bg-zinc-200 animate-pulse rounded mb-8"></div>
+          <div className="h-32 w-full bg-zinc-100 animate-pulse rounded-2xl"></div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-zinc-50 text-[#0f1c32]">
@@ -61,9 +79,7 @@ export default function AppPage() {
           <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-lg font-semibold mb-4">Déposer</h3>
             <p className="text-zinc-500 text-sm mb-4">Déposez vos KTMS pour gagner des récompenses.</p>
-            <div className="h-32 bg-zinc-50 rounded-xl border border-dashed border-zinc-300 flex items-center justify-center text-zinc-400">
-              Formulaire de dépôt (bientôt)
-            </div>
+            <DepositForm />
           </div>
 
           <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">

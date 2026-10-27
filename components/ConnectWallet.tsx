@@ -1,15 +1,29 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 
 export function ConnectWallet() {
+  const [mounted, setMounted] = useState(false)
+  
+  // ✅ On attend que le composant soit monté côté client
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const { address, isConnected } = useAccount()
   const { connect, connectors, error } = useConnect()
   const { disconnect } = useDisconnect()
   
   const [showMenu, setShowMenu] = useState(false)
   const [connectingId, setConnectingId] = useState<string | null>(null)
+
+  // ✅ Si pas monté, on affiche un placeholder
+  if (!mounted) {
+    return (
+      <div className="h-10 w-32 bg-zinc-100 animate-pulse rounded-full"></div>
+    )
+  }
 
   if (isConnected) {
     return (
@@ -39,7 +53,7 @@ export function ConnectWallet() {
       {showMenu && (
         <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-zinc-100 py-2 z-50">
             {connectors
-            .filter((connector) => connector.name !== 'Injected') // <-- On retire juste "Injected"
+            .filter((connector) => connector.name !== 'Injected') // On retire juste "Injected"
             .map((connector) => {
             // On détermine le nom à afficher
             let displayName = connector.name;
