@@ -2,8 +2,15 @@
 
 import Navbar from "@/components/Navbar";
 import { ConnectWallet } from "@/components/ConnectWallet";
+import { useKtemasBalance } from "@/lib/useKtemasBalance";
+import { useKtemasVault } from "@/lib/UseKtemasVault";
+import { useAccount } from "wagmi";
 
 export default function AppPage() {
+  const { isConnected } = useAccount();
+  const { balance, isLoading: isLoadingBalance } = useKtemasBalance();
+  const { deposit, isLoading: isLoadingVault } = useKtemasVault();
+
   return (
     <main className="min-h-screen bg-zinc-50 text-[#0f1c32]">
       <Navbar />
@@ -13,14 +20,41 @@ export default function AppPage() {
           Mon Dashboard
         </h1>
 
-        {/* Zone de connexion avec le bouton Connect Wallet */}
-        <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Connectez votre wallet</h2>
-            <p className="text-zinc-500 text-sm">Pour voir vos soldes et interagir avec le Vault.</p>
+            <h2 className="text-xl font-semibold mb-2">Mon Wallet</h2>
+            <p className="text-zinc-500 text-sm">Gérez vos KTMS et interagissez avec le Vault.</p>
           </div>
           <ConnectWallet />
         </div>
+
+        {isConnected && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            {/* Solde Wallet */}
+            <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm">
+              <h3 className="text-sm font-medium text-zinc-500 mb-2">Solde Wallet</h3>
+              {isLoadingBalance ? (
+                <p className="text-2xl font-bold text-zinc-400">Chargement...</p>
+              ) : (
+                <p className="text-4xl font-bold tracking-tight">
+                  {balance.toLocaleString('fr-FR')} <span className="text-2xl text-zinc-400">KTMS</span>
+                </p>
+              )}
+            </div>
+
+            {/* Dépôt dans le Vault */}
+            <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm">
+              <h3 className="text-sm font-medium text-zinc-500 mb-2">Dépôt dans le Vault</h3>
+              {isLoadingVault ? (
+                <p className="text-2xl font-bold text-zinc-400">Chargement...</p>
+              ) : (
+                <p className="text-4xl font-bold tracking-tight">
+                  {deposit.toLocaleString('fr-FR')} <span className="text-2xl text-zinc-400">KTMS</span>
+                </p>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Zone Vault (placeholder) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
