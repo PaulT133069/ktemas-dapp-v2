@@ -11,7 +11,7 @@ import { WithdrawForm } from "@/components/WithdrawForm";
 
 export default function AppPage() {
   const [mounted, setMounted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState<string>(""); // <-- NOUVEAU
+  const [timeLeft, setTimeLeft] = useState<string>("");
 
   useEffect(() => { setMounted(true) }, []);
 
@@ -19,7 +19,6 @@ export default function AppPage() {
   const { balance, isLoading: isLoadingBalance } = useKtemasBalance();
   const { deposit, isLoading: isLoadingVault, withdrawalAmount, isWithdrawalActive, requestTimestamp } = useKtemasVault();
 
-  // ✅ Calcul du compte à rebours
   useEffect(() => {
     if (!isWithdrawalActive || !requestTimestamp) {
       setTimeLeft("");
@@ -28,7 +27,7 @@ export default function AppPage() {
 
     const interval = setInterval(() => {
       const now = Math.floor(Date.now() / 1000);
-      const unlockTime = requestTimestamp + 48 * 60 * 60; // +48h
+      const unlockTime = requestTimestamp + 48 * 60 * 60;
       const diff = unlockTime - now;
 
       if (diff <= 0) {
@@ -44,7 +43,6 @@ export default function AppPage() {
     return () => clearInterval(interval);
   }, [isWithdrawalActive, requestTimestamp]);
 
-  // ✅ Si pas monté, on affiche un placeholder pour toute la page
   if (!mounted) {
     return (
       <main className="min-h-screen bg-zinc-50">
@@ -62,14 +60,15 @@ export default function AppPage() {
       <Navbar />
       
       <div className="pt-32 px-6 max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold tracking-tighter mb-8">
+        <h1 className="text-4xl font-bold tracking-tighter mb-8 text-[#0f1c32]">
           Mon Dashboard
         </h1>
 
-        <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        {/* Carte Mon Wallet */}
+        <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-8 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Mon Wallet</h2>
-            <p className="text-zinc-500 text-sm">Gérez vos KTMS et interagissez avec le Vault.</p>
+            <h2 className="text-xl font-semibold mb-2 text-white">Mon Wallet</h2>
+            <p className="text-white text-sm">Gérez vos KTMS et interagissez avec le Vault.</p>
           </div>
           <ConnectWallet />
         </div>
@@ -77,32 +76,32 @@ export default function AppPage() {
         {isConnected && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             {/* Solde Wallet */}
-            <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm">
-              <h3 className="text-sm font-medium text-zinc-500 mb-2">Solde Wallet</h3>
+            <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-8 rounded-2xl shadow-sm">
+              <h3 className="text-sm font-medium text-white mb-2">Solde Wallet</h3>
               {isLoadingBalance ? (
-                <p className="text-2xl font-bold text-zinc-400">Chargement...</p>
+                <p className="text-2xl font-bold text-white/50">Chargement...</p>
               ) : (
-                <p className="text-4xl font-bold tracking-tight">
-                  {balance.toLocaleString('fr-FR')} <span className="text-2xl text-zinc-400">KTMS</span>
+                <p className="text-4xl font-bold tracking-tight text-white">
+                  {balance.toLocaleString('fr-FR')} <span className="text-2xl text-white/70">KTMS</span>
                 </p>
               )}
             </div>
 
             {/* Dépôt dans le Vault */}
-            <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm">
-              <h3 className="text-sm font-medium text-zinc-500 mb-2">Dépôt dans le Vault</h3>
+            <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-8 rounded-2xl shadow-sm">
+              <h3 className="text-sm font-medium text-white mb-2">Dépôt dans le Vault</h3>
               {isLoadingVault ? (
-                <p className="text-2xl font-bold text-zinc-400">Chargement...</p>
+                <p className="text-2xl font-bold text-white/50">Chargement...</p>
               ) : (
-                <p className="text-4xl font-bold tracking-tight">
-                  {deposit.toLocaleString('fr-FR')} <span className="text-2xl text-zinc-400">KTMS</span>
+                <p className="text-4xl font-bold tracking-tight text-white">
+                  {deposit.toLocaleString('fr-FR')} <span className="text-2xl text-white/70">KTMS</span>
                 </p>
               )}
             </div>
           </div>
         )}
 
-        {/* ✅ Carte de retrait avec compte à rebours */}
+        {/* Carte de retrait (on garde le bleu clair pour la différencier) */}
         {isConnected && isWithdrawalActive && (
           <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
@@ -128,15 +127,15 @@ export default function AppPage() {
 
         {/* Zone Vault */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <h3 className="text-lg font-semibold mb-4">Déposer</h3>
-            <p className="text-zinc-500 text-sm mb-4">Déposez vos KTMS pour gagner des récompenses.</p>
+          <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-8 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-lg font-semibold mb-4 text-white">Déposer</h3>
+            <p className="text-white text-sm mb-4">Déposez vos KTMS pour gagner des récompenses.</p>
             <DepositForm />
           </div>
 
-          <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <h3 className="text-lg font-semibold mb-4">Retirer</h3>
-            <p className="text-zinc-500 text-sm mb-4">Retirez vos KTMS (délai de 48h).</p>
+          <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-8 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-lg font-semibold mb-4 text-white">Retirer</h3>
+            <p className="text-white text-sm mb-4">Retirez vos KTMS (délai de 48h).</p>
             <WithdrawForm />
           </div>
         </div>

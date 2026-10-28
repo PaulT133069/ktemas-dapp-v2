@@ -5,12 +5,12 @@ export default function TresoreriePage() {
     <main className="min-h-screen bg-zinc-50 text-[#0f1c32]">
       <Navbar />
       
-      <div className="pt-32 px-6 max-w-6xl mx-auto">
+      <div className="pt-32 px-6 max-w-6xl mx-auto text-center">
         <div className="mb-12">
           <h1 className="text-4xl font-bold tracking-tighter mb-4">
             Trésorerie du Protocole
           </h1>
-          <p className="text-zinc-500 text-lg max-w-2xl">
+          <p className="text-zinc-500 text-lg max-w-2xl mx-auto text-center">
             Transparence totale sur les fonds de l'écosystème Ktemas.
             Les frais de retrait (0,5%) alimentent cette trésorerie, sécurisée par un timelock de 48h.
           </p>
@@ -18,20 +18,20 @@ export default function TresoreriePage() {
 
         {/* Cartes de stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <h3 className="text-sm font-medium text-zinc-500 mb-2">Solde Total</h3>
-            <p className="text-3xl font-bold">0 KTMS</p>
-            <p className="text-sm text-zinc-400 mt-1">En attente de dépôts</p>
+          <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-6 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-sm font-medium text-white/70 mb-2">Solde Total</h3>
+            <p className="text-3xl font-bold text-white">0 KTMS</p>
+            <p className="text-sm text-white/50 mt-1">En attente de dépôts</p>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <h3 className="text-sm font-medium text-zinc-500 mb-2">Frais Perçus</h3>
-            <p className="text-3xl font-bold">0 KTMS</p>
-            <p className="text-sm text-zinc-400 mt-1">Depuis le lancement</p>
+          <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-6 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-sm font-medium text-white/70 mb-2">Frais Perçus</h3>
+            <p className="text-3xl font-bold text-white">0 KTMS</p>
+            <p className="text-sm text-white/50 mt-1">Depuis le lancement</p>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <h3 className="text-sm font-medium text-zinc-500 mb-2">Retraits Effectués</h3>
-            <p className="text-3xl font-bold">0</p>
-            <p className="text-sm text-zinc-400 mt-1">Avec timelock de 48h</p>
+          <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-6 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-sm font-medium text-white/70 mb-2">Retraits Effectués</h3>
+            <p className="text-3xl font-bold text-white">0</p>
+            <p className="text-sm text-white/50 mt-1">Avec timelock de 48h</p>
           </div>
         </div>
 
