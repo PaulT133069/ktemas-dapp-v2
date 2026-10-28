@@ -1,4 +1,6 @@
-export const KTEMAS_TOKEN_ADDRESS = "0xc7b1690b4821812c224b93720f8ccb3505f0ce41";
+export const KTEMAS_TOKEN_ADDRESS = "0xcafd7886bb663bde5be6dd7958c744960eb1fdc5";
+export const KTEMAS_VAULT_ADDRESS = "0xc7b1690b4821812c224b93720f8ccb3505f0ce41";
+export const KTEMAS_TREASURY_ADDRESS = "0x333a341e3995048c4113182d973a9d976aeb5c4d";
 
 export const KTEMAS_TOKEN_ABI = [
   {
@@ -139,9 +141,7 @@ export const KTEMAS_TOKEN_ABI = [
     "stateMutability": "nonpayable",
     "type": "function"
   },
-] as const;
-
-export const KTEMAS_VAULT_ADDRESS = "0xaf82f9bae4bf76b40201370619fec2f8f1a84077"; // L'adresse de ton Vault
+] as const; // L'adresse de ton Vault
 
 export const KTEMAS_VAULT_ABI = [
   {

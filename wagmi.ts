@@ -1,9 +1,9 @@
 import { createConfig, http } from 'wagmi'
-import { sepolia } from 'wagmi/chains'
+import { baseSepolia } from 'wagmi/chains'
 import { injected, walletConnect, coinbaseWallet } from 'wagmi/connectors'
 
 export const config = createConfig({
-  chains: [sepolia],
+  chains: [baseSepolia],
   connectors: [
     injected(), // <-- Force le nom à être MetaMask
     coinbaseWallet({
@@ -20,6 +20,6 @@ export const config = createConfig({
     }),
   ],
   transports: {
-    [sepolia.id]: http(),
+    [baseSepolia.id]: http(),
   },
 })
