@@ -11,11 +11,38 @@ import { WithdrawForm } from "@/components/WithdrawForm";
 
 export default function AppPage() {
   const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<string>(""); // <-- NOUVEAU
+
   useEffect(() => { setMounted(true) }, []);
 
   const { isConnected } = useAccount();
   const { balance, isLoading: isLoadingBalance } = useKtemasBalance();
-  const { deposit, isLoading: isLoadingVault } = useKtemasVault();
+  const { deposit, isLoading: isLoadingVault, withdrawalAmount, isWithdrawalActive, requestTimestamp } = useKtemasVault();
+
+  // ✅ Calcul du compte à rebours
+  useEffect(() => {
+    if (!isWithdrawalActive || !requestTimestamp) {
+      setTimeLeft("");
+      return;
+    }
+
+    const interval = setInterval(() => {
+      const now = Math.floor(Date.now() / 1000);
+      const unlockTime = requestTimestamp + 48 * 60 * 60; // +48h
+      const diff = unlockTime - now;
+
+      if (diff <= 0) {
+        setTimeLeft("Prêt à exécuter !");
+        clearInterval(interval);
+      } else {
+        const hours = Math.floor(diff / 3600);
+        const minutes = Math.floor((diff % 3600) / 60);
+        setTimeLeft(`${hours}h ${minutes}m restantes`);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isWithdrawalActive, requestTimestamp]);
 
   // ✅ Si pas monté, on affiche un placeholder pour toute la page
   if (!mounted) {
@@ -75,7 +102,31 @@ export default function AppPage() {
           </div>
         )}
 
-        {/* Zone Vault (placeholder) */}
+        {/* ✅ Carte de retrait avec compte à rebours */}
+        {isConnected && isWithdrawalActive && (
+          <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-blue-900 mb-1">Retrait en attente</h3>
+              <p className="text-blue-800 text-sm">
+                Vous avez demandé un retrait de <strong>{withdrawalAmount.toLocaleString('fr-FR')} KTMS</strong>.
+              </p>
+              {timeLeft && <p className="text-blue-600 text-xs font-medium mt-1">{timeLeft}</p>}
+            </div>
+            
+            <button 
+              disabled={timeLeft !== "Prêt à exécuter !"}
+              className={`font-medium px-6 py-2 rounded-full transition-colors text-sm ${
+                timeLeft === "Prêt à exécuter !" 
+                  ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                  : "bg-zinc-200 text-zinc-500 cursor-not-allowed"
+              }`}
+            >
+              {timeLeft === "Prêt à exécuter !" ? "Exécuter le retrait" : "En attente..."}
+            </button>
+          </div>
+        )}
+
+        {/* Zone Vault */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-lg font-semibold mb-4">Déposer</h3>

@@ -21,7 +21,7 @@ export function WithdrawForm() {
 
   useEffect(() => {
     if (isSuccess) {
-      alert("Demande de retrait envoyée ! Tu pourras retirer tes KTMS après 48h.")
+      alert("Demande de retrait envoyée ! Vous pourrez retirer vos KTMS après 48h.")
       setWithdrawHash(undefined)
       setAmount('')
     }

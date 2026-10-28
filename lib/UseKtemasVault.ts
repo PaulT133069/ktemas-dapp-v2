@@ -1,6 +1,6 @@
 'use client'
 
-import { useReadContract, useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { useReadContract, useAccount, useWriteContract } from 'wagmi'
 import { KTEMAS_VAULT_ADDRESS, KTEMAS_VAULT_ABI } from './contracts'
 
 export function useKtemasVault() {
@@ -34,13 +34,15 @@ export function useKtemasVault() {
   const formattedDeposit = userDeposit ? Number(userDeposit[0]) / 10 ** 18 : 0
   const formattedWithdrawalAmount = withdrawalRequest ? Number(withdrawalRequest[0]) / 10 ** 18 : 0
   const isWithdrawalActive = withdrawalRequest ? withdrawalRequest[2] : false
+  // ✅ On récupère le timestamp de la demande
+  const requestTimestamp = withdrawalRequest ? Number(withdrawalRequest[1]) : 0
 
   return {
     deposit: formattedDeposit,
     withdrawalAmount: formattedWithdrawalAmount,
     isWithdrawalActive,
+    requestTimestamp, // ✅ On le retourne
     isLoading: isLoadingDeposit || isLoadingWithdrawal,
-    // Actions (pour plus tard)
     write: {
       deposit: (amount: bigint) => deposit({ address: KTEMAS_VAULT_ADDRESS, abi: KTEMAS_VAULT_ABI, functionName: 'deposit', args: [amount] }),
       executeWithdrawal: () => executeWithdrawal({ address: KTEMAS_VAULT_ADDRESS, abi: KTEMAS_VAULT_ABI, functionName: 'executeWithdrawal' }),
