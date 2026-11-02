@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* --- BASE --- */
 html {
   font-family: var(--font-poppins), system-ui, -apple-system, sans-serif !important;
 }
@@ -11,15 +12,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* --- ANIMATIONS --- */
+
+/* 1. Apparition simple (fade + slide) */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in-up {
@@ -31,3 +29,31 @@ body {
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
+
+/* 2. Chute avec flou (pour les emojis) */
+@keyframes dropInBlur {
+  0% { opacity: 0; transform: translateY(-30px) scale(0.8); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+}
+
+/* 3. Flottement continu */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* 4. LA CLASSE MAGIQUE : Chute PUIS Flottement */
+.anim-drop-and-float {
+  /* On applique les deux animations à la suite */
+  animation: 
+    dropInBlur 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    float 4s ease-in-out 1.2s infinite;
+  opacity: 0;
+}
+
+/* Les délais (à appliquer sur la classe anim-drop-and-float) */
+.delay-drop-1 { animation-delay: 0.2s, 1.4s; } /* 0.2s pour la chute, 1.4s pour le flottement */
+.delay-drop-2 { animation-delay: 0.5s, 1.7s; }
+.delay-drop-3 { animation-delay: 0.8s, 2.0s; }
+.delay-drop-4 { animation-delay: 1.1s, 2.3s; }

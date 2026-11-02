@@ -10,10 +10,26 @@ export default function Hero() {
         Sécurisé et audité
       </div>
 
-      {/* Titre - apparaît en deuxième */}
-      <h1 className="text-6xl md:text-7xl font-bold tracking-tighter text-[#0f1c32] mb-6 animate-fade-in-up delay-100">
-        Le futur de votre épargne <br className="hidden md:block" /> est ici.
-      </h1>
+        {/* Conteneur principal : titre + emojis sur les côtés */}
+      <div className="relative flex items-center justify-center mb-6 w-full max-w-5xl mx-auto">
+        
+        {/* Colonne gauche d'emojis */}
+        <div className="absolute -left-16 lg:-left-24 top-1/2 -translate-y-1/2 flex flex-col gap-8 hidden md:flex">
+          <span className="text-6xl anim-drop-and-float delay-drop-1">🏛️</span>
+          <span className="text-6xl anim-drop-and-float delay-drop-3">🔐</span>
+        </div>
+
+        {/* Titre */}
+        <h1 className="text-6xl md:text-7xl font-bold tracking-tighter text-[#0f1c32] animate-fade-in-up delay-100 px-4 md:px-24 text-center">
+          Le futur de votre épargne <br className="hidden md:block" /> est ici.
+        </h1>
+
+        {/* Colonne droite d'emojis */}
+        <div className="absolute -right-16 lg:-right-24 top-1/2 -translate-y-1/2 flex flex-col gap-8 hidden md:flex">
+          <span className="text-6xl anim-drop-and-float delay-drop-2">🏦</span>
+          <span className="text-6xl anim-drop-and-float delay-drop-4">🪙</span>
+        </div>
+      </div>
 
       {/* Sous-titre - apparaît en troisième */}
       <p className="text-xl md:text-2xl text-zinc-500 font-light mb-12 max-w-2xl animate-fade-in-up delay-200">
