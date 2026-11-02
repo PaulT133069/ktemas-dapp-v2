@@ -1,9 +1,8 @@
-// Adresses des contrats sur Base Sepolia
-export const KTEMAS_TOKEN_ADDRESS = "0x20857f35acb43488772594d93d61c2f9b1440327";
-export const KTEMAS_TREASURY_ADDRESS = "0x4fed29419275a6cfbbf2520a64826b8bb43ade43";
-export const KTEMAS_VAULT_ADDRESS = "0x8e8befb768608da26f812367285f62a014d1cf48";
-export const KTEMAS_GOVERNMENT_ADDRESS = "0x898a432a00e56003f7501af3335d89f6d1eb5234";
-export const KTEMAS_YIELD_ADDRESS = "0x01048ba1364f89dfd77cc5ab29ea0b969d3e15ba";
+export const KTEMAS_TOKEN_ADDRESS = "0x39db9cdf3b4eea17da27cb043ba71a04c28b3801";
+export const KTEMAS_TREASURY_ADDRESS = "0x2e48fd578b0e85fed6fa0f46bb9b0ee1b8e412";
+export const KTEMAS_VAULT_ADDRESS = "0x4df8bb90a31c8ee8478c3a2f0814b2c77622dddd";
+export const KTEMAS_GOVERNMENT_ADDRESS = "0xb785fd051680d9dd527468bf3fcf55752d3b475a";
+export const KTEMAS_YIELD_ADDRESS = "0x55d4d1f9d4418972dfff6b5ae6e06bd8ccc73e0d";
 
 export const KTEMAS_TOKEN_ABI = [
   {
@@ -226,4 +225,21 @@ export const KTEMAS_VAULT_ABI = [
     "stateMutability": "nonpayable",
     "type": "function"
   },
+] as const;
+
+export const KTEMAS_YIELD_ABI = [
+  {
+    "inputs": [{ "internalType": "address", "name": "user", "type": "address" }],
+    "name": "calculateRewards",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimRewards",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
 ] as const;

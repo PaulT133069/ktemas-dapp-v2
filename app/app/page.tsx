@@ -8,6 +8,7 @@ import { useKtemasVault } from "@/lib/UseKtemasVault";
 import { DepositForm } from "@/components/DepositForm";
 import { useAccount } from "wagmi";
 import { WithdrawForm } from "@/components/WithdrawForm";
+import { useKtemasYield } from "@/lib/useKtemasYield";
 
 export default function AppPage() {
   const [mounted, setMounted] = useState(false);
@@ -18,6 +19,7 @@ export default function AppPage() {
   const { isConnected } = useAccount();
   const { balance, isLoading: isLoadingBalance } = useKtemasBalance();
   const { deposit, isLoading: isLoadingVault, withdrawalAmount, isWithdrawalActive, requestTimestamp } = useKtemasVault();
+  const { pendingRewards, isLoading: isLoadingYield, claimRewards, isClaiming } = useKtemasYield();
 
   useEffect(() => {
     if (!isWithdrawalActive || !requestTimestamp) {
@@ -98,6 +100,21 @@ export default function AppPage() {
                 </p>
               )}
             </div>
+
+            {/* Récompenses en attente */}
+            <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-8 rounded-2xl shadow-sm">
+              <h3 className="text-sm font-medium text-white/70 mb-2">Récompenses en attente</h3>
+              <p className="text-4xl font-bold tracking-tight text-white mb-4">
+                {pendingRewards.toLocaleString('fr-FR')} <span className="text-2xl text-white/70">KTMS</span>
+              </p>
+              <button
+                onClick={() => claimRewards()}
+                disabled={isClaiming || pendingRewards === 0}
+                className="w-full bg-white text-[#0f1c32] hover:bg-zinc-100 font-bold px-4 py-2 rounded-xl transition-all active:scale-95 disabled:opacity-50 text-sm"
+              >
+                {isClaiming ? 'Réclamation...' : 'Réclamer'}
+              </button>
+            </div>  
           </div>
         )}
 
