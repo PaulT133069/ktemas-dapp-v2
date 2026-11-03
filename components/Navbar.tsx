@@ -3,9 +3,41 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+// Petit composant pour les menus déroulants
+function Dropdown({ title, items }: { title: string; items: { name: string; href: string }[] }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div 
+      className="relative"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <button className="hover:text-[#0f1c32] transition-colors flex items-center gap-1 py-2">
+        {title}
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      {isOpen && (
+        <div className="absolute top-full left-0 w-56 bg-white rounded-xl shadow-lg border border-zinc-100 py-2 -mt-1">
+          {items.map((item) => (
+            <Link 
+              key={item.name} 
+              href={item.href} 
+              className="block px-4 py-2 hover:bg-zinc-50 transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +46,28 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const appItems = [
+    { name: "Gouvernance", href: "/gouvernance" },
+    { name: "Treasury", href: "/tresorerie" },
+    { name: "Vault", href: "/app" },
+  ];
+
+  const toolsItems = [
+    { name: "Yield", href: "/yield" }, // À créer plus tard
+    { name: "Integration", href: "/integration" }, // À créer plus tard
+  ];
+
+  const ecosystemItems = [
+    { name: "Ktemas Ecosystem", href: "/ecosysteme" },
+    { name: "Global Ecosystem", href: "/ecosysteme/global" },
+  ];
+
+  const moreItems = [
+    { name: "Documentation", href: "/documentation" }, // À créer plus tard
+    { name: "Improvements", href: "/roadmap" }, // À créer plus tard
+    { name: "About", href: "/about" }, // À créer plus tard
+  ];
 
   return (
     <nav 
@@ -30,38 +84,12 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Liens */}
+      {/* Liens centraux */}
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
-        <Link href="/app" className="hover:text-[#0f1c32] transition-colors">App</Link>
-        
-        {/* Menu déroulant Écosystème */}
-        <div 
-          className="relative h-full flex items-center"
-          onMouseEnter={() => setDropdownOpen(true)}
-          onMouseLeave={() => setDropdownOpen(false)}
-        >
-          <button className="hover:text-[#0f1c32] transition-colors flex items-center gap-1 py-4">
-            Écosystème
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          
-          {dropdownOpen && (
-            <div className="absolute top-full left-0 w-56 bg-white rounded-xl shadow-lg border border-zinc-100 py-2 -mt-1">
-              <Link href="/ecosysteme" className="block px-4 py-2 hover:bg-zinc-50 transition-colors">
-                Ktemas Écosystème
-              </Link>
-              <Link href="/ecosysteme/global" className="block px-4 py-2 hover:bg-zinc-50 transition-colors">
-                Global Écosystème
-              </Link>
-            </div>
-          )}
-        </div>
-
-        <Link href="/gouvernance" className="hover:text-[#0f1c32] transition-colors">Gouvernance</Link>
-        <Link href="/tresorerie" className="hover:text-[#0f1c32] transition-colors">Trésorerie</Link>
-        <Link href="/documentation" className="hover:text-[#0f1c32] transition-colors">Documentation</Link>
+        <Dropdown title="App" items={appItems} />
+        <Dropdown title="Tools" items={toolsItems} />
+        <Dropdown title="Ecosystem" items={ecosystemItems} />
+        <Dropdown title="More" items={moreItems} />
       </div>
 
       {/* Bouton d'action */}
