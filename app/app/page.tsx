@@ -18,7 +18,7 @@ export default function AppPage() {
 
   const { isConnected } = useAccount();
   const { balance, isLoading: isLoadingBalance } = useKtemasBalance();
-  const { deposit, isLoading: isLoadingVault, withdrawalAmount, isWithdrawalActive, requestTimestamp } = useKtemasVault();
+  const { deposit, isLoading: isLoadingVault, withdrawalAmount, isWithdrawalActive, requestTimestamp, write, isWithdrawing } = useKtemasVault();
   const { pendingRewards, isLoading: isLoadingYield, claimRewards, isClaiming } = useKtemasYield();
 
   useEffect(() => {
@@ -130,14 +130,22 @@ export default function AppPage() {
             </div>
             
             <button 
-              disabled={timeLeft !== "Prêt à exécuter !"}
+              onClick={async () => {
+                try {
+                  await write.executeWithdrawal();
+                  window.location.reload(); // Recharge la page une fois la transaction validée
+                } catch (e) {
+                  console.error(e);
+                }
+              }}
+              disabled={timeLeft !== "Prêt à exécuter !" || isWithdrawing}
               className={`font-medium px-6 py-2 rounded-full transition-colors text-sm ${
-                timeLeft === "Prêt à exécuter !" 
+                timeLeft === "Prêt à exécuter !" && !isWithdrawing
                   ? "bg-blue-600 hover:bg-blue-700 text-white" 
                   : "bg-zinc-200 text-zinc-500 cursor-not-allowed"
               }`}
             >
-              {timeLeft === "Prêt à exécuter !" ? "Exécuter le retrait" : "En attente..."}
+              {isWithdrawing ? "Exécution..." : (timeLeft === "Prêt à exécuter !" ? "Exécuter le retrait" : "En attente...")}
             </button>
           </div>
         )}

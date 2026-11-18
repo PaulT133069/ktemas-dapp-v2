@@ -1,5 +1,6 @@
 'use client'
 
+import { formatUnits } from 'viem'
 import { useReadContract, useAccount } from 'wagmi'
 import { KTEMAS_TOKEN_ADDRESS, KTEMAS_TOKEN_ABI } from './contracts'
 
@@ -17,9 +18,7 @@ export function useKtemasBalance() {
   })
 
   // Formater le solde (diviser par 10^18 pour les décimales)
-  const formattedBalance = balance
-    ? Number(balance) / 10 ** 18
-    : 0
+  const formattedBalance = balance ? Number(formatUnits(balance, 18)) : 0
 
   return {
     balance: formattedBalance,

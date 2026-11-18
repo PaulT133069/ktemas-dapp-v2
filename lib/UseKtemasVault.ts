@@ -1,6 +1,7 @@
 'use client'
 
 import { useReadContract, useAccount, useWriteContract } from 'wagmi'
+import { formatUnits } from 'viem' // <-- L'import ajouté
 import { KTEMAS_VAULT_ADDRESS, KTEMAS_VAULT_ABI } from './contracts'
 
 export function useKtemasVault() {
@@ -30,9 +31,9 @@ export function useKtemasVault() {
   // Préparation de la fonction de retrait
   const { writeContractAsync: executeWithdrawal, isPending: isWithdrawing } = useWriteContract()
 
-  // Formatage des données
-  const formattedDeposit = userDeposit ? Number(userDeposit[0]) / 10 ** 18 : 0
-  const formattedWithdrawalAmount = withdrawalRequest ? Number(withdrawalRequest[0]) / 10 ** 18 : 0
+  // Formatage des données (CORRIGÉ avec formatUnits)
+  const formattedDeposit = userDeposit ? Number(formatUnits(userDeposit[0], 18)) : 0
+  const formattedWithdrawalAmount = withdrawalRequest ? Number(formatUnits(withdrawalRequest[0], 18)) : 0
   const isWithdrawalActive = withdrawalRequest ? withdrawalRequest[2] : false
   // ✅ On récupère le timestamp de la demande
   const requestTimestamp = withdrawalRequest ? Number(withdrawalRequest[1]) : 0

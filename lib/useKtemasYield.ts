@@ -1,6 +1,7 @@
 'use client'
 
 import { useReadContract, useAccount, useWriteContract } from 'wagmi'
+import { formatUnits } from 'viem' // <-- Import ajouté
 import { KTEMAS_YIELD_ADDRESS, KTEMAS_YIELD_ABI } from './contracts'
 
 export function useKtemasYield() {
@@ -18,7 +19,8 @@ export function useKtemasYield() {
   // Préparation de la fonction de claim
   const { writeContractAsync: claimRewards, isPending: isClaiming } = useWriteContract()
 
-  const formattedRewards = pendingRewards ? Number(pendingRewards) / 10 ** 18 : 0
+  // Formatage corrigé
+  const formattedRewards = pendingRewards ? Number(formatUnits(pendingRewards, 18)) : 0
 
   return {
     pendingRewards: formattedRewards,
