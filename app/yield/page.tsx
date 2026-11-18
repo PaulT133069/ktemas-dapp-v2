@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 export default function YieldPage() {
   const [simulateAmount, setSimulateAmount] = useState(5000);
   
-  const exampleRate = 0.12; 
+  const exampleRate = 0.05; 
   const estimatedGain = Math.round(simulateAmount * exampleRate);
 
   return (
@@ -38,7 +38,7 @@ export default function YieldPage() {
             {/* Touche de transparence sur le taux */}
             <div className="hidden md:block text-right">
               <span className="text-xs font-medium text-zinc-400 uppercase tracking-wider">Taux de base actuel</span>
-              <p className="text-lg font-bold text-emerald-600">12.00%</p>
+              <p className="text-lg font-bold text-emerald-600">5.00%</p>
             </div>
           </div>
 
@@ -111,7 +111,7 @@ export default function YieldPage() {
         <section className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
           <div className="max-w-2xl mx-auto text-center mb-10 relative z-10">
             <h2 className="text-2xl font-semibold mb-2 text-white">Simulateur interactif</h2>
-            <p className="text-white/70">Déplacez le curseur pour estimer vos gains futurs. <span className="text-sm block mt-1">(Hypothèse visuelle avec un taux de base fixe de 12%).</span></p>
+            <p className="text-white/70">Déplacez le curseur pour estimer vos gains futurs. <span className="text-sm block mt-1">(Hypothèse visuelle avec un taux de base fixe de 5%).</span></p>
           </div>
 
           <div className="max-w-xl mx-auto flex flex-col gap-8 relative z-10">
