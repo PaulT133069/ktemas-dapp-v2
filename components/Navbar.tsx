@@ -49,24 +49,25 @@ export default function Navbar() {
 
   const appItems = [
     { name: "Gouvernance", href: "/gouvernance" },
-    { name: "Treasury", href: "/tresorerie" },
+    { name: "Trésorerie", href: "/tresorerie" },
     { name: "Vault", href: "/app" },
   ];
 
   const toolsItems = [
-    { name: "Yield", href: "/yield" }, // À créer plus tard
-    { name: "Integration", href: "/integration" }, // À créer plus tard
+    { name: "Yield", href: "/yield" },
+    { name: "Intégration", href: "/integration" }, 
   ];
 
   const ecosystemItems = [
-    { name: "Ktemas Ecosystem", href: "/ecosysteme" },
-    { name: "Global Ecosystem", href: "/ecosysteme/global" },
+    { name: "Écosystème Ktemas", href: "/ecosysteme" },
+    { name: "Écosystème Global", href: "/ecosysteme/global" },
   ];
 
   const moreItems = [
-    { name: "Documentation", href: "/documentation" }, // À créer plus tard
-    { name: "Improvements", href: "/roadmap" }, // À créer plus tard
-    { name: "About", href: "/about" }, // À créer plus tard
+    { name: "Documentation", href: "/documentation" },
+    { name: "Améliorations", href: "/roadmap" }, // À créer plus tard
+    { name: "À propos", href: "/about" },
+    { name: "Contact", href: "/contact" } // À créer plus tard
   ];
 
   return (
@@ -87,9 +88,9 @@ export default function Navbar() {
       {/* Liens centraux */}
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
         <Dropdown title="App" items={appItems} />
-        <Dropdown title="Tools" items={toolsItems} />
-        <Dropdown title="Ecosystem" items={ecosystemItems} />
-        <Dropdown title="More" items={moreItems} />
+        <Dropdown title="Outils" items={toolsItems} />
+        <Dropdown title="Écosystème" items={ecosystemItems} />
+        <Dropdown title="Plus" items={moreItems} />
       </div>
 
       {/* Bouton d'action */}
