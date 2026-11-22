@@ -12,7 +12,7 @@ export default function IntegrationPage() {
         {/* HERO SECTION */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Construisez avec <span className="text-[#0f1c32]">Ktemas</span>
+            Intégration avec <span className="text-[#0f1c32]">Ktemas</span>
           </h1>
           <p className="text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed">
             Ktemas est un écosystème ouvert. Que vous soyez développeur, créateur de protocole ou partenaire, 
@@ -48,7 +48,7 @@ export default function IntegrationPage() {
               </ul>
 
               <div className="flex gap-4">
-                <Link href="https://sepolia.etherscan.io" target="_blank" className="bg-white text-[#0f1c32] hover:bg-zinc-100 font-bold px-6 py-3 rounded-xl transition-all shadow-lg active:scale-95 text-sm">
+                <Link href="https://sepolia.etherscan.io" target="_blank" className="bg-white text-[#0f1c32] hover:bg-zinc-100 font-bold px-6 py-3 rounded-full transition-all shadow-lg active:scale-95 text-sm">
                   Voir sur Etherscan
                 </Link>
               </div>
@@ -144,11 +144,11 @@ export default function IntegrationPage() {
           <div className="relative z-10 text-center">
             <h2 className="text-2xl font-bold mb-3">Besoin d'aide pour votre intégration ?</h2>
             <p className="text-white/70 text-sm mb-8 max-w-xl mx-auto leading-relaxed">
-              Notre équipe technique est là pour vous accompagner dans la connexion de vos services à l'écosystème Ktemas.
+              L'équipe technique est là pour vous accompagner dans la connexion de vos services à l'écosystème Ktemas.
             </p>
             <a 
               href="mailto:dev@ktemas.io" 
-              className="inline-block bg-white text-[#0f1c32] hover:bg-zinc-100 font-bold px-8 py-3 rounded-xl transition-all shadow-lg active:scale-95 text-sm"
+              className="inline-block bg-white text-[#0f1c32] hover:bg-zinc-100 font-bold px-8 py-3 rounded-full transition-all shadow-lg active:scale-95 text-sm"
             >
               Contacter l'équipe Dev
             </a>

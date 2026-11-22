@@ -29,10 +29,10 @@ export default function EcosystemeGlobalPage() {
             </span>
           </div>
 
-          {/* Kuusi */}
+          {/* Ninth Finance */}
           <div className="bg-gradient-to-br from-[#0f1c32] via-[#132a4a] to-[#1a3a5c] text-white p-8 rounded-2xl shadow-sm">
-            <div className="text-4xl mb-4">🌲</div>
-            <h2 className="text-2xl font-bold mb-3 text-white">Kuusi</h2>
+            <div className="text-4xl mb-4">9️⃣</div>
+            <h2 className="text-2xl font-bold mb-3 text-white">Ninth Finance</h2>
             <p className="text-white/80 mb-4">
               [Description à venir] La deuxième devise de l'écosystème.
             </p>
